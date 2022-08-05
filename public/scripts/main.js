@@ -103,6 +103,7 @@ function handleCollisions() {
         160,
         canvas.height / 2 - 10
       );
+      testing(score);
       return true;
     }
   }
@@ -126,3 +127,18 @@ canvas.addEventListener("click", (e) => {
     location.reload();
   }
 });
+
+const testing = async (score) => {
+  console.log("Running test");
+
+  const res = await fetch("/api/score", {
+    body: JSON.stringify(score),
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+  });
+
+  const result = await res.json();
+  console.log(result);
+};
