@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useMoralis } from "react-moralis";
@@ -13,7 +12,7 @@ export default function Home() {
       signingMessage: "Authorize linking of your wallet",
     })
       .then(function (user) {
-        console.log(user.get("ethAddress"));
+        console.log(user?.get("ethAddress"));
       })
       .catch(function (error) {
         console.log(error);
@@ -22,7 +21,6 @@ export default function Home() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      console.log();
       router.replace("/dashboard");
     }
   }, [isAuthenticated, router]);
