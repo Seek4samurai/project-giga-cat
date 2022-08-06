@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
 
 const Dashboard = () => {
-  const { Moralis, isAuthenticated, user, logout } = useMoralis();
+  const { account, Moralis, isAuthenticated, user, logout } = useMoralis();
   const [userAddress, setUserAddress] = useState();
   const router = useRouter();
 
@@ -13,23 +13,30 @@ const Dashboard = () => {
     console.log("logged out");
   };
 
-  const handleSwitch = () => {
-    Moralis.onAccountChanged(async (chain) => {
-      console.log("Account changed to:", chain);
-      setUserAddress(chain);
-    });
-  };
-
   useEffect(() => {
-    if (!isAuthenticated) router.replace("/");
+    const bodyTag = document.querySelector("body");
+    bodyTag?.classList.remove("InGame_body__b_fQc");
 
-    // Account switching
-    handleSwitch();
+    if (!isAuthenticated) router.replace("/");
 
     // Ethereum global object gives undefined error when page is refreshed
     setUserAddress(user?.get("ethAddress"));
     // setUserAddress(ethereum?.selectedAddress);
-  }, [isAuthenticated, router, user, Moralis]);
+  }, [isAuthenticated, router, user]);
+
+  // useEffect(() => {
+  //   // Account switching
+  //   Moralis.onAccountChanged(async (chain) => {
+  //     console.log("Account changed to:", chain);
+  //     setUserAddress(chain);
+  //   });
+  // }, [account]);
+
+  useEffect(() => {
+    // Account switching
+    console.log("Account changed to:", account);
+    setUserAddress(account);
+  }, [account]);
 
   return (
     <div>

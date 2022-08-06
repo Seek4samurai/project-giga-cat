@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 import Script from "next/script";
 import { useEffect, useState } from "react";
@@ -11,31 +12,51 @@ const Game = () => {
 
   const handleExitGame = () => {
     const bodyTag = document.querySelector("body");
-    bodyTag.classList.remove(style.body);
+    bodyTag?.classList.remove("InGame_body__b_fQc");
+
     router.replace("/");
   };
 
-  const handleSwitch = () => {
-    Moralis.onAccountChanged(async (chain) => {
-      console.log("Account changed to:", chain);
-      setUserAddress(chain);
-    });
-  };
-
   useEffect(() => {
+    console.log("Playing as:", user?.get("ethAddress"));
     if (!isAuthenticated) {
       router.replace("/");
     } else {
       const bodyTag = document.querySelector("body");
       bodyTag.classList.add(style.body);
 
-      // Account switching
-      handleSwitch();
       // Ethereum global object gives undefined error when page is refreshed
       setUserAddress(user?.get("ethAddress"));
       // setUserAddress(ethereum?.selectedAddress);
     }
   }, [user, isAuthenticated, router]);
+
+  // UseEffect with onAccountChanged() causing Memory Leak
+  // useEffect(() => {
+  //   // Account switching
+  //   Moralis.onAccountChanged(async (chain) => {
+  //     console.log("Account changed to:", chain);
+  //     setUserAddress(chain);
+  //   });
+  // }, [Moralis]);
+
+  useEffect(() => {
+    // Account switching
+    console.log("Account changed to:", account);
+    setUserAddress(account);
+  }, [account]);
+
+  const handleScripts = () => {
+    console.log("CLICK");
+    return (
+      <Head>
+        <script src="./scripts/main.js" async></script>
+        <script src="./scripts/bird.js" async></script>
+        <script src="./scripts/particles.js" async></script>
+        <script src="./scripts/obstacle.js" async></script>
+      </Head>
+    );
+  };
 
   return (
     <>
@@ -50,7 +71,7 @@ const Game = () => {
         <div className={style.wrapper} id="menu">
           <div className={style.allthethings}>
             <div className={style.left}></div>
-            <div className={style.single} id="single">
+            <div className={style.single} id="single" onClick={handleScripts}>
               <p>PLAY</p>
             </div>
             <div className={style.options}>
