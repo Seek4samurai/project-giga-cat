@@ -5,10 +5,11 @@ const Game = () => {
   const router = useRouter();
   const data = router.query;
 
-  console.log("Querying:", data);
+  const userId = Object.keys(data);
+
   return (
     <div>
-      <GameCanva userAddress={data}></GameCanva>
+      <GameCanva userAddress={userId}></GameCanva>
     </div>
   );
 };

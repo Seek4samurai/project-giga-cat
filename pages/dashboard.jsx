@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
 
 const Dashboard = () => {
-  const { account, Moralis, isAuthenticated, user, logout } = useMoralis();
+  const { isAuthenticated, user, logout } = useMoralis();
   const [userAddress, setUserAddress] = useState();
   const router = useRouter();
 
@@ -14,28 +14,22 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
+    // removing body class as to remove background gifs from game
     const bodyTag = document.querySelector("body");
     bodyTag?.classList.remove("InGame_body__b_fQc");
 
-    if (!isAuthenticated) router.replace("/");
-    else {
-      const showAccount = async () => {
+    // Authentication
+    if (!isAuthenticated) {
+      router.replace("/");
+    } else {
+      const showAccount = () => {
         // Ethereum global object gives undefined error when page is refreshed
-        setUserAddress(await account);
         // setUserAddress(ethereum?.selectedAddress);
+        setUserAddress(user?.get("ethAddress"));
       };
       showAccount();
     }
-  }, [isAuthenticated, router, account]);
-
-  useEffect(() => {
-    const handleSwitching = () => {
-      // Account switching
-      console.log("Account changed to:", account);
-      setUserAddress(account);
-    };
-    handleSwitching();
-  }, [account]);
+  }, [isAuthenticated, router, user, userAddress]);
 
   return (
     <div>

@@ -1,13 +1,12 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
 import Script from "next/script";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
 import style from "../styles/InGame.module.css";
 
-const GameCanva = (data) => {
-  const { Moralis, isAuthenticated, authenticate, user, account } =
-    useMoralis();
+const GameCanva = (userId) => {
+  const { isAuthenticated, user, account } = useMoralis();
   const [userAddress, setUserAddress] = useState();
   const router = useRouter();
 
@@ -18,30 +17,21 @@ const GameCanva = (data) => {
     router.replace("/");
   };
 
+  // Authentication
   useEffect(() => {
     if (!isAuthenticated) {
       router.replace("/");
     } else {
+      // adding body class as to add background gifs for game
       const bodyTag = document.querySelector("body");
       bodyTag.classList.add(style.body);
 
-      const showAccount = async () => {
-        // Ethereum global object gives undefined error when page is refreshed
-        setUserAddress(await account);
-        // setUserAddress(ethereum?.selectedAddress);
+      const showAccount = () => {
+        setUserAddress(userId.userAddress[0]);
       };
       showAccount();
     }
-  }, [user, isAuthenticated, router, account]);
-
-  useEffect(() => {
-    const handleSwitching = () => {
-      // Account switching
-      console.log("Account changed to:", account);
-      setUserAddress(account);
-    };
-    handleSwitching();
-  }, [account]);
+  }, [user, isAuthenticated, router, account, userId.userAddress]);
 
   const handleScripts = () => {
     console.log("CLICK");
