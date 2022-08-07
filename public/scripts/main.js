@@ -103,7 +103,10 @@ function handleCollisions() {
         160,
         canvas.height / 2 - 10
       );
-      testing(score);
+      const queryString = window.location.search.split("?");
+      const userAddress = queryString[1];
+
+      testing(score, userAddress);
       return true;
     }
   }
@@ -116,7 +119,7 @@ function renderDeadBtn() {
   ctx.font = "30px Georgia";
   ctx.fillStyle = "white";
   ctx.textAlign = "center";
-  ctx.fillText("Retry!", canvas.width / 2, canvas.height / 2 + 30);
+  ctx.fillText("Return!", canvas.width / 2, canvas.height / 2 + 30);
 }
 
 canvas.addEventListener("click", (e) => {
@@ -128,11 +131,14 @@ canvas.addEventListener("click", (e) => {
   }
 });
 
-const testing = async (score) => {
+const testing = async (score, userAddress) => {
   console.log("Running test");
 
   const res = await fetch("/api/score", {
-    body: JSON.stringify(score),
+    body: JSON.stringify({
+      address: userAddress,
+      score: score,
+    }),
     headers: {
       "Content-Type": "application/json",
     },

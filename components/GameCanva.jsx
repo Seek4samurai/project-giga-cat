@@ -1,12 +1,9 @@
-import Head from "next/head";
 import Script from "next/script";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { useMoralis } from "react-moralis";
 import style from "../styles/InGame.module.css";
 
 const GameCanva = (userId) => {
-  const { isAuthenticated, user, account } = useMoralis();
   const [userAddress, setUserAddress] = useState();
   const router = useRouter();
 
@@ -17,33 +14,16 @@ const GameCanva = (userId) => {
     router.replace("/");
   };
 
-  // Authentication
   useEffect(() => {
-    if (!isAuthenticated) {
-      router.replace("/");
-    } else {
-      // adding body class as to add background gifs for game
-      const bodyTag = document.querySelector("body");
-      bodyTag.classList.add(style.body);
+    // adding body class as to add background gifs for game
+    const bodyTag = document.querySelector("body");
+    bodyTag.classList.add(style.body);
 
-      const showAccount = () => {
-        setUserAddress(userId.userAddress[0]);
-      };
-      showAccount();
-    }
-  }, [user, isAuthenticated, router, account, userId.userAddress]);
-
-  const handleScripts = () => {
-    console.log("CLICK");
-    return (
-      <Head>
-        <script src="./scripts/main.js" async></script>
-        <script src="./scripts/bird.js" async></script>
-        <script src="./scripts/particles.js" async></script>
-        <script src="./scripts/obstacle.js" async></script>
-      </Head>
-    );
-  };
+    const showAccount = () => {
+      setUserAddress(userId.userAddress[0]);
+    };
+    showAccount();
+  }, [router, userId.userAddress]);
 
   return (
     <>
@@ -58,15 +38,23 @@ const GameCanva = (userId) => {
         <div className={style.wrapper} id="menu">
           <div className={style.allthethings}>
             <div className={style.left}></div>
-            <div className={style.single} id="single" onClick={handleScripts}>
+            <div className={style.single} id="single">
               <p>PLAY</p>
             </div>
-            <div className={style.options}>
-              <p>CHECK AUTH</p>
-            </div>
-            <div className={style.credits}>
-              <p>CREDITS</p>
-            </div>
+            <a target="_blank" href="/leaderboard" rel="noopener noreferrer">
+              <div className={style.options}>
+                <p>High Score</p>
+              </div>
+            </a>
+            <a
+              target="_blank"
+              href="https://github.com/Seek4samurai/project-giga-cat"
+              rel="noopener noreferrer"
+            >
+              <div className={style.credits}>
+                <p>Support</p>
+              </div>
+            </a>
             <div className={style.right}></div>
             <div className={style.exit} onClick={handleExitGame}></div>
             <div className={style.circle}></div>
