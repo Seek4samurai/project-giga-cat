@@ -4,23 +4,15 @@ import { useMoralis } from "react-moralis";
 import GameCanva from "../components/GameCanva";
 
 const Game = () => {
-  const { isInitialized, Moralis, isAuthenticated } = useMoralis();
+  const { isInitialized, isAuthenticated } = useMoralis();
   const router = useRouter();
   const data = router.query;
   const userId = Object.keys(data);
 
-  const checkUser = async () => {
-    if (isInitialized) {
-      Moralis.User.current();
-    }
-  };
-  checkUser();
-
   useEffect(() => {
-    if (!checkUser) {
-      router.replace("/");
-    }
-  }, [isAuthenticated, router]);
+    const isAuth = () => (!isAuthenticated ? router.push("/") : null);
+    isInitialized && isAuth();
+  }, [isInitialized, isAuthenticated]);
 
   return (
     <div>

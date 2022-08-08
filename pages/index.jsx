@@ -20,6 +20,10 @@ export default function Home() {
   };
 
   useEffect(() => {
+    // removing body class as to remove background gifs from game
+    const bodyTag = document.querySelector("body");
+    bodyTag?.classList.remove("InGame_body__b_fQc");
+
     if (isAuthenticated) {
       router.replace("/dashboard");
     }

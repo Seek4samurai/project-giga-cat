@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Script from "next/script";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -41,11 +42,17 @@ const GameCanva = (userId) => {
             <div className={style.single} id="single">
               <p>PLAY</p>
             </div>
-            <a target="_blank" href="/leaderboard" rel="noopener noreferrer">
+            <Link
+              target="_blank"
+              href={{
+                pathname: "/leaderboard",
+                query: userAddress,
+              }}
+            >
               <div className={style.options}>
                 <p>High Score</p>
               </div>
-            </a>
+            </Link>
             <a
               target="_blank"
               href="https://github.com/Seek4samurai/project-giga-cat"
