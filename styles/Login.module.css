@@ -1,0 +1,52 @@
+.body {
+  height: 100vh;
+  background: linear-gradient(242.17deg, #ffe1b4 2.2%, #fff5e6 97.34%);
+}
+
+.container {
+  max-width: 1920px;
+  max-height: 100vh;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.SVGContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 1000px; /* To be Careful */
+}
+.SVG_1 {
+  display: block;
+}
+.SVG_2 {
+  display: flex;
+  align-self: flex-end;
+}
+
+.TopBarContainer {
+  position: absolute;
+  top: 0;
+  padding: 1rem;
+
+  display: flex;
+}
+.MeetCreatorContainer {
+  display: flex;
+  margin-right: 0.5rem;
+}
+.Contribute {
+  display: flex;
+}
+.Github {
+  padding: 0.5rem;
+  width: 50px;
+  height: 50px;
+}
+.LinkedIn {
+  padding: 0.5rem;
+  width: 50px;
+  height: 50px;
+}
