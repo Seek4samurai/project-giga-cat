@@ -1,7 +1,9 @@
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useMoralis } from "react-moralis";
 import { Github, LinkedIn, SVG_1, SVG_2 } from "../public/assets/SVGs";
+import MetaMask from "../public/MetaMaskSVG.svg";
 import style from "../styles/Login.module.css";
 
 export default function Home() {
@@ -70,9 +72,29 @@ export default function Home() {
             </a>
           </div>
         </div>
-        {/* <div>
-          <button onClick={handleLogin}>Connect Wallet</button>
-        </div> */}
+        <div className={style.LoginBox}>
+          <div className={style.MetaMaskContainer}>
+            <Image src={MetaMask} alt="MetaMask"></Image>
+          </div>
+          <div className={style.Welcome}>
+            <h2>Welcome back</h2>
+            <h4>A Decentralised Web awaits.</h4>
+          </div>
+          <button className={style.LoginBtn} onClick={handleLogin}>
+            Connect Wallet
+          </button>
+          <h4 className={style.Message}>
+            You’ll need a Web 3.0 Wallet to <br></br>authenticate
+          </h4>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://metamask.io/"
+            style={{ cursor: "pointer" }}
+          >
+            <button className={style.DownloadBtn}>Download MetaMask</button>
+          </a>
+        </div>
       </div>
     </div>
   );
