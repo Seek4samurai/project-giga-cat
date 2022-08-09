@@ -8,6 +8,12 @@ const GameCanva = (userId) => {
   const [userAddress, setUserAddress] = useState();
   const router = useRouter();
 
+  const handleHighScore = () => {
+    // removing body class as to remove background gifs from game
+    const bodyTag = document.querySelector("body");
+    bodyTag?.classList.remove("InGame_body__b_fQc");
+  };
+
   const handleExitGame = () => {
     const bodyTag = document.querySelector("body");
     bodyTag?.classList.remove("InGame_body__b_fQc");
@@ -50,7 +56,7 @@ const GameCanva = (userId) => {
               }}
             >
               <div className={style.options}>
-                <p>High Score</p>
+                <p onClick={handleHighScore}>High Score</p>
               </div>
             </Link>
             <a

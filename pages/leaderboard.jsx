@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
 import UserTile from "../components/UserTile";
-import style from "../styles/InGame.module.css";
+import style from "../styles/Leaderboard.module.css";
 
 const Leaderboard = () => {
   const [score, setScore] = useState([]);
@@ -23,10 +23,6 @@ const Leaderboard = () => {
   };
 
   useEffect(() => {
-    // adding body class as to add background gifs for game
-    const bodyTag = document.querySelector("body");
-    bodyTag.classList.add(style.body);
-
     // getting score from redis
     fetchScores().then((data) => {
       setScore(data);
@@ -39,17 +35,24 @@ const Leaderboard = () => {
   }, [isInitialized, isAuthenticated]);
 
   return (
-    <>
-      <h2>leaderboard</h2>
-      {score ? (
-        score.map((data) => (
-          <UserTile key={data.entityId} data={data}></UserTile>
-        ))
-      ) : (
-        <div>Loading</div>
-      )}
-      <button onClick={handleBack}>Back</button>
-    </>
+    <div className={style.body}>
+      <div className={style.container}>
+        <div className={style.Header}>
+          <h2>Leaderboard</h2>
+          <h1 className={style.Top}>Top 3 Players 👑</h1>
+        </div>
+        {score ? (
+          score.map((data) => (
+            <UserTile key={data.entityId} data={data}></UserTile>
+          ))
+        ) : (
+          <div>Loading</div>
+        )}
+        <button onClick={handleBack} className={style.Btn}>
+          Back
+        </button>
+      </div>
+    </div>
   );
 };
 
