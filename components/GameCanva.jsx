@@ -39,9 +39,15 @@ const GameCanva = (userId) => {
       <Script src="./scripts/particles.js" async></Script>
       <Script src="./scripts/obstacle.js" async></Script>
       <div>
-        <h2 id="addressBar">
-          User {userAddress?.slice(0, 6)}...{userAddress?.slice(39)}
+        <h2 id="addressBar" className={style.address}>
+          Deploying as {userAddress?.slice(0, 6)}...{userAddress?.slice(39)}
         </h2>
+        <h3 className={style.legend}>
+          <div>
+            &quot; Legends say it gets 10x fun after 100 &quot; <br></br>
+          </div>
+          <sub style={{ fontWeight: "normal" }}> - Legends themself</sub>
+        </h3>
         <div className={style.wrapper} id="menu">
           <div className={style.allthethings}>
             <div className={style.left}></div>
