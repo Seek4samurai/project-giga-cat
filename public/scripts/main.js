@@ -16,7 +16,7 @@ let angle = 0;
 let hue = 0;
 let frame = 0;
 let score = 0;
-let gamespeed = 4;
+let gamespeed = 5;
 
 // Background-----------------------------
 const background = new Image();
@@ -28,21 +28,21 @@ const BG = {
   width: canvas.width,
   height: canvas.height,
 };
-function handleBackground() {
-  if (BG.x1 <= -BG.width + gamespeed) BG.x1 = BG.width;
-  else BG.x1 -= gamespeed;
-  if (BG.x2 <= -BG.width + gamespeed) BG.x2 = BG.width;
-  else BG.x2 -= gamespeed;
-  ctx.drawImage(background, BG.x1, BG.y, BG.width, BG.height);
-  ctx.drawImage(background, BG.x2, BG.y, BG.width, BG.height);
-}
+// function handleBackground() {
+//   if (BG.x1 <= -BG.width + gamespeed) BG.x1 = BG.width;
+//   else BG.x1 -= gamespeed;
+//   if (BG.x2 <= -BG.width + gamespeed) BG.x2 = BG.width;
+//   else BG.x2 -= gamespeed;
+//   ctx.drawImage(background, BG.x1, BG.y, BG.width, BG.height);
+//   ctx.drawImage(background, BG.x2, BG.y, BG.width, BG.height);
+// }
 
 // ----------------------------------------------------------
 
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  //ctx.fillRect(10, canvas.height - 90, 50, 50);
-  handleBackground();
+  // ctx.fillRect(10, canvas.height - 90, 50, 50);
+  // handleBackground();
   handleObstacles();
   if (handleCollisions()) {
     isDead = true;
@@ -132,8 +132,6 @@ canvas.addEventListener("click", (e) => {
 });
 
 const testing = async (score, userAddress) => {
-  console.log("Running test");
-
   const res = await fetch("/api/score", {
     body: JSON.stringify({
       address: userAddress,
@@ -146,5 +144,4 @@ const testing = async (score, userAddress) => {
   });
 
   const result = await res.json();
-  console.log(result);
 };
