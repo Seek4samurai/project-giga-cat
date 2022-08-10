@@ -57,6 +57,7 @@ const GameCanva = (userId) => {
 
           setTimeout(() => {
             gamespeed = 10;
+            PanicWindow.style.display = "block";
           }, 31000);
         });
         break;
@@ -70,6 +71,7 @@ const GameCanva = (userId) => {
 
           setTimeout(() => {
             gamespeed = 10;
+            PanicWindow.style.display = "block";
           }, 36000);
         });
         break;
@@ -83,6 +85,7 @@ const GameCanva = (userId) => {
 
           setTimeout(() => {
             gamespeed = 10;
+            PanicWindow.style.display = "block";
           }, 37500);
         });
         break;
@@ -96,6 +99,7 @@ const GameCanva = (userId) => {
 
           setTimeout(() => {
             gamespeed = 10;
+            PanicWindow.style.display = "block";
           }, 38000);
         });
         break;
@@ -109,6 +113,7 @@ const GameCanva = (userId) => {
 
           setTimeout(() => {
             gamespeed = 10;
+            PanicWindow.style.display = "block";
           }, 41000);
         });
         break;
@@ -138,7 +143,7 @@ const GameCanva = (userId) => {
         </h3>
         <div className={style.wrapper} id="menu">
           <div className={style.allthethings}>
-            <div className={style.left}></div>
+            {/* <div className={style.left}></div> */}
             <div className={style.single} id="single" onClick={start}>
               <p>Play</p>
             </div>
@@ -162,18 +167,18 @@ const GameCanva = (userId) => {
                 <p>Support</p>
               </div>
             </a>
-            <div className={style.right}></div>
+            {/* <div className={style.right}></div> */}
             <div className={style.exit} onClick={handleExitGame}></div>
             <div className={style.circle}></div>
           </div>
         </div>
         <canvas className={style.canvas1} id="canvas1"></canvas>
+        <div className={style.box} id="box"></div>
         <p className={style.warning}>
           If you face any bugs related to scripts not loading or soundtracks
           overlapping, <br></br>Please consider refreshing the page.
         </p>
       </div>
-      <div className={style.box}></div>
     </>
   );
 };

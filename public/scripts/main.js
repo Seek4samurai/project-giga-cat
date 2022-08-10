@@ -1,5 +1,6 @@
 // Get the canvas and its bounds
 const canvas = document.getElementById("canvas1");
+const PanicWindow = document.getElementById("box");
 let canvasLeftBound = canvas.offsetLeft;
 let canvasUpperBound = canvas.offsetTop;
 
