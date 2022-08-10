@@ -9,8 +9,6 @@
   border: 5px solid black;
 }
 
-@import url(https://fonts.googleapis.com/css?family=Shadows+Into+Light);
-
 .body {
   background-image: url("../public/assets/saf.gif");
 }
@@ -35,6 +33,25 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.Quotes {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.warning {
+  z-index: 99;
+
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  text-align: center;
+  font-size: 14px;
+  font-style: italic;
+  letter-spacing: 1.2px;
 }
 
 .wrapper {
@@ -67,7 +84,7 @@
   border-radius: 50px;
   position: absolute;
   top: 5px;
-  left: 5px;
+  left: 3.8px;
 
   border: 3px solid orange;
   border-top-color: transparent;
@@ -81,7 +98,7 @@
   background: orange;
   z-index: 70;
   position: Absolute;
-  right: 13px;
+  right: 12.5px;
   top: 6px;
 }
 .circle {
@@ -111,6 +128,9 @@
   margin: auto;
   top: 5px;
   left: 2px;
+
+  font-family: Ubuntu;
+  font-weight: 700;
 }
 
 .single {
@@ -127,8 +147,6 @@
   -webkit-transition: 0.5s;
   transition: 0.5s;
   color: orange;
-  font-family: shadows into light;
-
   cursor: pointer;
 }
 
@@ -192,7 +210,6 @@
   right: 250px;
   font-size: 30px;
   text-align: center;
-  font-family: shadows into light;
   color: orange;
   -webkit-transition: 0.5s;
   transition: 0.5s;
@@ -214,7 +231,6 @@
   font-size: 30px;
   right: 200px;
   text-align: center;
-  font-family: shadows into light;
   color: orange;
   -webkit-transition: 0.5s;
   transition: 0.5s;

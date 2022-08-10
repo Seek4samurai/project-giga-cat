@@ -4,10 +4,15 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import style from "../styles/InGame.module.css";
+import { quotes } from "../lib/quotes";
 
 const GameCanva = (userId) => {
   const [userAddress, setUserAddress] = useState();
+  const [currQuote, setCurrQuote] = useState();
   const router = useRouter();
+
+  const quoteArr = [0, 1, 2, 3, 4];
+  const quoteId = quoteArr[Math.floor(Math.random() * 5)];
 
   const handleHighScore = () => {
     // removing body class as to remove background gifs from game
@@ -27,6 +32,11 @@ const GameCanva = (userId) => {
     const bodyTag = document.querySelector("body");
     bodyTag.classList.add(style.body);
 
+    const fetchQuote = () => {
+      setCurrQuote(quotes[quoteId]);
+    };
+    fetchQuote();
+
     const showAccount = () => {
       setUserAddress(userId.userAddress[0]);
     };
@@ -40,67 +50,67 @@ const GameCanva = (userId) => {
     switch (songId) {
       case 1:
         const crabrave = new Audio("./soundtracks/crabrave.mp3");
-        crabrave.play();
+        crabrave.play().then(() => {
+          toast("Playing! Crab Rave", {
+            icon: "🔥",
+          });
 
-        toast("Playing! Crab Rave", {
-          icon: "🔥",
+          setTimeout(() => {
+            gamespeed = 10;
+          }, 31000);
         });
-
-        setTimeout(() => {
-          gamespeed = 10;
-        }, 31000);
         break;
 
       case 2:
         const runninginthe90s = new Audio("./soundtracks/runninginthe90s.mp3");
-        runninginthe90s.play();
+        runninginthe90s.play().then(() => {
+          toast("Playing! Running in the 90s", {
+            icon: "🔥",
+          });
 
-        toast("Playing! Running in the 90s", {
-          icon: "🔥",
+          setTimeout(() => {
+            gamespeed = 10;
+          }, 36000);
         });
-
-        setTimeout(() => {
-          gamespeed = 10;
-        }, 36000);
         break;
 
       case 3:
         const dejavu = new Audio("./soundtracks/dejavu.mp3");
-        dejavu.play();
+        dejavu.play().then(() => {
+          toast("Playing! Deja Vu", {
+            icon: "🔥",
+          });
 
-        toast("Playing! Deja Vu", {
-          icon: "🔥",
+          setTimeout(() => {
+            gamespeed = 10;
+          }, 37500);
         });
-
-        setTimeout(() => {
-          gamespeed = 10;
-        }, 37500);
         break;
 
       case 4:
         const gasgasgas = new Audio("./soundtracks/gasgasgas.mp3");
-        gasgasgas.play();
+        gasgasgas.play().then(() => {
+          toast("Playing! Gas Gas Gas", {
+            icon: "🔥",
+          });
 
-        toast("Playing! Gas Gas Gas", {
-          icon: "🔥",
+          setTimeout(() => {
+            gamespeed = 10;
+          }, 38000);
         });
-
-        setTimeout(() => {
-          gamespeed = 10;
-        }, 38000);
         break;
 
       case 5:
         const fnaf = new Audio("./soundtracks/fnaf.mp3");
-        fnaf.play();
+        fnaf.play().then(() => {
+          toast("Playing! Five Nights at Freddy's 2", {
+            icon: "🔥",
+          });
 
-        toast("Playing! Five Nights at Freddy's 2", {
-          icon: "🔥",
+          setTimeout(() => {
+            gamespeed = 10;
+          }, 41000);
         });
-
-        setTimeout(() => {
-          gamespeed = 10;
-        }, 41000);
         break;
 
       default:
@@ -118,9 +128,11 @@ const GameCanva = (userId) => {
         <h2 id="addressBar" className={style.address}>
           Deploying as {userAddress?.slice(0, 6)}...{userAddress?.slice(39)}
         </h2>
+        <h2 className={style.Quotes}>&quot;{currQuote}&quot;</h2>
         <h3 className={style.legend}>
           <div>
-            &quot; Legends say it gets 10x fun after 100 &quot; <br></br>
+            &quot; Legends say it gets 10x fun after that beat drops &quot;{" "}
+            <br></br>
           </div>
           <sub style={{ fontWeight: "normal" }}> - Legends themself</sub>
         </h3>
@@ -128,7 +140,7 @@ const GameCanva = (userId) => {
           <div className={style.allthethings}>
             <div className={style.left}></div>
             <div className={style.single} id="single" onClick={start}>
-              <p>PLAY</p>
+              <p>Play</p>
             </div>
             <Link
               target="_blank"
@@ -156,7 +168,12 @@ const GameCanva = (userId) => {
           </div>
         </div>
         <canvas className={style.canvas1} id="canvas1"></canvas>
+        <p className={style.warning}>
+          If you face any bugs related to scripts not loading or soundtracks
+          overlapping, <br></br>Please consider refreshing the page.
+        </p>
       </div>
+      <div className={style.box}></div>
     </>
   );
 };
