@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import { MoralisProvider } from "react-moralis";
 import "../styles/globals.css";
 
@@ -9,6 +10,9 @@ function MyApp({ Component, pageProps }) {
         appId={process.env.NEXT_PUBLIC_MORALIS_APP_ID}
       >
         <Component {...pageProps} />
+        <div>
+          <Toaster position="top-right" reverseOrder={false} />
+        </div>
       </MoralisProvider>
     </>
   );

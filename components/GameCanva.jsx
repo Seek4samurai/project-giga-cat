@@ -2,6 +2,7 @@ import Link from "next/link";
 import Script from "next/script";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import style from "../styles/InGame.module.css";
 
 const GameCanva = (userId) => {
@@ -32,6 +33,81 @@ const GameCanva = (userId) => {
     showAccount();
   }, [router, userId.userAddress]);
 
+  const start = () => {
+    const songArr = [1, 2, 3, 4, 5];
+    const songId = songArr[Math.floor(Math.random() * 5)];
+
+    switch (songId) {
+      case 1:
+        const crabrave = new Audio("./soundtracks/crabrave.mp3");
+        crabrave.play();
+
+        toast("Playing! Crab Rave", {
+          icon: "🔥",
+        });
+
+        setTimeout(() => {
+          gamespeed = 10;
+        }, 31000);
+        break;
+
+      case 2:
+        const runninginthe90s = new Audio("./soundtracks/runninginthe90s.mp3");
+        runninginthe90s.play();
+
+        toast("Playing! Running in the 90s", {
+          icon: "🔥",
+        });
+
+        setTimeout(() => {
+          gamespeed = 10;
+        }, 36000);
+        break;
+
+      case 3:
+        const dejavu = new Audio("./soundtracks/dejavu.mp3");
+        dejavu.play();
+
+        toast("Playing! Deja Vu", {
+          icon: "🔥",
+        });
+
+        setTimeout(() => {
+          gamespeed = 10;
+        }, 37500);
+        break;
+
+      case 4:
+        const gasgasgas = new Audio("./soundtracks/gasgasgas.mp3");
+        gasgasgas.play();
+
+        toast("Playing! Gas Gas Gas", {
+          icon: "🔥",
+        });
+
+        setTimeout(() => {
+          gamespeed = 10;
+        }, 38000);
+        break;
+
+      case 5:
+        const fnaf = new Audio("./soundtracks/fnaf.mp3");
+        fnaf.play();
+
+        toast("Playing! Five Nights at Freddy's 2", {
+          icon: "🔥",
+        });
+
+        setTimeout(() => {
+          gamespeed = 10;
+        }, 41000);
+        break;
+
+      default:
+        break;
+    }
+  };
+
   return (
     <>
       <Script src="./scripts/main.js" async></Script>
@@ -51,7 +127,7 @@ const GameCanva = (userId) => {
         <div className={style.wrapper} id="menu">
           <div className={style.allthethings}>
             <div className={style.left}></div>
-            <div className={style.single} id="single">
+            <div className={style.single} id="single" onClick={start}>
               <p>PLAY</p>
             </div>
             <Link
