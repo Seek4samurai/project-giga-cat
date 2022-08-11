@@ -107,7 +107,7 @@ function handleCollisions() {
       const queryString = window.location.search.split("?");
       const userAddress = queryString[1];
 
-      // testing(score, userAddress);
+      testing(score, userAddress);
       return true;
     }
   }
