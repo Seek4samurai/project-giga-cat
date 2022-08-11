@@ -100,7 +100,7 @@ const GameCanva = (userId) => {
           setTimeout(() => {
             gamespeed = 10;
             PanicWindow.style.display = "block";
-          }, 38000);
+          }, 37500);
         });
         break;
 
