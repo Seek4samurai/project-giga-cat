@@ -1,0 +1,25 @@
+{
+  "app_name": "Nyan Cat game",
+  "description": "Nyan cat game with MetaMask authentication for Web 3.0 ecosystem. Made out of Next.js & Moralis. Database powered by @redis",
+  "hidden": false,
+  "rank": "",
+  "type": "Full App",
+  "contributed_by": "Gourav Singh Rawat",
+  "repo_url": "https://github.com/Seek4samurai/project-giga-cat",
+  "download_url": "https://github.com/Seek4samurai/project-giga-cat/archive/main.zip",
+  "hosted_url": "https://gigacat.vercel.app/",
+  "quick_deploy": "true",
+  "deploy_buttons": [],
+  "language": ["JavaScript, Css"],
+  "redis_commands": [""],
+  "redis_features": ["Primary Database"],
+  "redis_modules": ["Redis-Om, RedisInsight"],
+  "app_image_urls": [
+    "https://raw.githubusercontent.com/Seek4samurai/project-giga-cat/main/public/demo/Demo-1.png",
+    "https://raw.githubusercontent.com/Seek4samurai/project-giga-cat/main/public/demo/Demo-2.png"
+  ],
+  "youtube_url": "https://www.youtube.com/watch?v=5dCb1ebFYIs",
+  "special_tags": ["Hackathon"],
+  "verticals": ["Technology", "Entertainment"],
+  "markdown": "https://github.com/Seek4samurai/project-giga-cat/blob/main/README.md"
+}
