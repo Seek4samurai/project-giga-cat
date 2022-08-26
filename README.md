@@ -8,10 +8,10 @@ Once you pass through the first phase of the game, you'll enter a Panic event ph
 ![Demo-2](https://raw.githubusercontent.com/Seek4samurai/project-giga-cat/main/public/demo/Demo-2.png)
 
 <div style="display: grid; grid-template-columns: 240px 180px">
-  <img src="https://github.com/Seek4samurai/project-giga-cat/blob/main/public/demo/img_1.gif" width="500" height="380"/>
-  <img src="https://github.com/Seek4samurai/project-giga-cat/blob/main/public/demo/img_2.gif" width="500" height="380"/>
-  <img src="https://github.com/Seek4samurai/project-giga-cat/blob/main/public/demo/img_3.gif" width="500" height="380"/>
-  <img src="https://github.com/Seek4samurai/project-giga-cat/blob/main/public/demo/img_4.gif" width="500" height="380"/>
+  <img src="https://github.com/Seek4samurai/project-giga-cat/blob/main/public/demo/img_1.gif" width="680" height="480"/>
+  <img src="https://github.com/Seek4samurai/project-giga-cat/blob/main/public/demo/img_2.gif" width="680" height="480"/>
+  <img src="https://github.com/Seek4samurai/project-giga-cat/blob/main/public/demo/img_3.gif" width="680" height="480"/>
+  <img src="https://github.com/Seek4samurai/project-giga-cat/blob/main/public/demo/img_4.gif" width="680" height="480"/>
 </div>
 
 # Overview video 🎥
