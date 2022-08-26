@@ -7,6 +7,13 @@ Once you pass through the first phase of the game, you'll enter a Panic event ph
 ![Demo-1](https://raw.githubusercontent.com/Seek4samurai/project-giga-cat/main/public/demo/Demo-1.png)
 ![Demo-2](https://raw.githubusercontent.com/Seek4samurai/project-giga-cat/main/public/demo/Demo-2.png)
 
+<div style="display: grid; grid-template-columns: 240px 180px">
+  <img src="https://github.com/Seek4samurai/project-giga-cat/blob/main/public/demo/img_1.gif" width="500" height="380"/>
+  <img src="https://github.com/Seek4samurai/project-giga-cat/blob/main/public/demo/img_2.gif" width="500" height="380"/>
+  <img src="https://github.com/Seek4samurai/project-giga-cat/blob/main/public/demo/img_3.gif" width="500" height="380"/>
+  <img src="https://github.com/Seek4samurai/project-giga-cat/blob/main/public/demo/img_4.gif" width="500" height="380"/>
+</div>
+
 # Overview video 🎥
 
 Here's a short video that explains the project and how it uses Redis:
@@ -180,3 +187,4 @@ Feel free to contact me through anywhere, LinkedIn, Gmail, or leave a create a G
 Each Soundtracks completely belongs to the respective artist & I don't own them at all.
 
 Hope you liked the project ❤️
+Made with ❤️ & Redis!
