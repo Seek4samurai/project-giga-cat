@@ -3,9 +3,15 @@
 Nyan cat game is actually a music rhythm based game 🎶 I.e you start with a decent difficulty as the music in start is decent and it expect you to pass through it, after a few tries at least. 
 Once you pass through the first phase of the game, you'll enter a Panic event phase, where it gets real exciting 🎸. Panic event can start anytime above the score of `50 pts`.
 
+# Why this?
+After participating in 4 previous Hackathons (actually winning non of them :P), I decided to do something really entertaining & crazy. So I came up with this idea to make a web game using [Redis](https://app.redislabs.com/) as a primary database. Thanks to [RedisOm](https://github.com/redis/redis-om-node) it got really easy to do this.
+Easy to use thanks to the [Redis documentation](https://redis.io/docs/), it was a fun project to work on, and really think it's a Wacky Wildcard Project :P.
+
 ## Screenshots 📷 
 ![Demo-1](https://raw.githubusercontent.com/Seek4samurai/project-giga-cat/main/public/demo/Demo-1.png)
 ![Demo-2](https://raw.githubusercontent.com/Seek4samurai/project-giga-cat/main/public/demo/Demo-2.png)
+
+## Check out these Demo clips of the game 🤯
 
 <div style="display: grid; grid-template-columns: 240px 180px">
   <img src="https://github.com/Seek4samurai/project-giga-cat/blob/main/public/demo/img_1.gif" width="680" height="480"/>
@@ -141,7 +147,23 @@ export default async function handler(req, res) {
 ```
 You can [check this file](https://github.com/Seek4samurai/project-giga-cat/blob/main/lib/redis.js), where I've declared such logic.
 
+One more thing is that we are also displaying the top-3 players in the Home page of the Game. Let's dig it...
+So we're doing something similar to what we did above I.e.
+```javascript
+const fetchScores = async () => {
+    const res = await fetch("/api/search?" + query);
+    const results = await res.json();
+    return results["scores"];
+};
+```
+Fetching score as an Object. Then in our separate `Marq.jsx` component we are using it as:
+```javascript
+{score[0]?.address?.slice(0, 9)}...{score[0]?.address?.slice(39)}
+```
+
 Refer to [Using RediSearch](https://github.com/redis/redis-om-node#-using-redisearch).
+
+_Hope everything was clear, and if not consider checking the video. If still stuck on something feel free to contact me over my any of the social handle, I'll be happy to help you :)_
 
 ## How to run it locally? 💻
 
