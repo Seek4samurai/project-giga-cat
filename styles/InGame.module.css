@@ -27,6 +27,31 @@
     rgba(239, 252, 255, 1) 100%
   );
 }
+
+.sliderContainer h2 {
+  margin-top: 1rem;
+  margin-bottom: 0rem;
+}
+.sliderContainer {
+  width: 600px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0%);
+
+  display: flex;
+  flex-direction: column;
+  z-index: 99;
+
+  text-align: center;
+  font-size: 1.2rem;
+  color: #464646;
+  border-radius: 15px;
+  background: linear-gradient(
+    243deg,
+    rgba(180, 223, 255, 1) 0%,
+    rgba(239, 252, 255, 1) 100%
+  );
+}
 .legend {
   font-style: italic;
   width: fit-content;

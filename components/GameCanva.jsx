@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import style from "../styles/InGame.module.css";
 import { quotes } from "../lib/quotes";
+import Marq from "./Marq";
 
 const GameCanva = (userId) => {
   const [userAddress, setUserAddress] = useState();
@@ -129,6 +130,9 @@ const GameCanva = (userId) => {
       <Script src="./scripts/bird.js" async></Script>
       <Script src="./scripts/particles.js" async></Script>
       <Script src="./scripts/obstacle.js" async></Script>
+      <div className={style.marq}>
+        <Marq></Marq>
+      </div>
       <div>
         <h2 id="addressBar" className={style.address}>
           Deploying as {userAddress?.slice(0, 6)}...{userAddress?.slice(39)}
