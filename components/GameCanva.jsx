@@ -3,12 +3,14 @@ import Script from "next/script";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useMoralis } from "react-moralis";
 import style from "../styles/InGame.module.css";
 import { quotes } from "../lib/quotes";
 import { EditIcon } from "../public/assets/SVGs";
 import Marq from "./Marq";
 
 const GameCanva = (userId) => {
+  const { logout } = useMoralis();
   const [userName, setUserName] = useState("");
   const [userAddress, setUserAddress] = useState();
   const [currQuote, setCurrQuote] = useState();
@@ -19,7 +21,7 @@ const GameCanva = (userId) => {
 
   const handleEdit = () => {
     const Input = prompt("Enter your username");
-    if (Input.length > 16) {
+    if (Input?.length > 16) {
       alert("Username should not be longer than 16 words");
     } else {
       setUserName(Input);
@@ -32,11 +34,11 @@ const GameCanva = (userId) => {
     bodyTag?.classList.remove("InGame_body__b_fQc");
   };
 
-  const handleExitGame = () => {
+  const handleExitGame = async () => {
     const bodyTag = document.querySelector("body");
     bodyTag?.classList.remove("InGame_body__b_fQc");
 
-    router.replace("/");
+    await logout();
   };
 
   useEffect(() => {

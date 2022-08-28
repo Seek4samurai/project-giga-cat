@@ -13,7 +13,7 @@ const Leaderboard = () => {
   const query = Object.keys(data)[0];
 
   const handleBack = () => {
-    router.back();
+    window.location.assign(`/game?${query}`);
   };
 
   const fetchScores = async () => {
