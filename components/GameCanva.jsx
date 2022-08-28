@@ -5,15 +5,26 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import style from "../styles/InGame.module.css";
 import { quotes } from "../lib/quotes";
+import { EditIcon } from "../public/assets/SVGs";
 import Marq from "./Marq";
 
 const GameCanva = (userId) => {
+  const [userName, setUserName] = useState("");
   const [userAddress, setUserAddress] = useState();
   const [currQuote, setCurrQuote] = useState();
   const router = useRouter();
 
   const quoteArr = [0, 1, 2, 3, 4];
   const quoteId = quoteArr[Math.floor(Math.random() * 5)];
+
+  const handleEdit = () => {
+    const Input = prompt("Enter your username");
+    if (Input.length > 16) {
+      alert("Username should not be longer than 16 words");
+    } else {
+      setUserName(Input);
+    }
+  };
 
   const handleHighScore = () => {
     // removing body class as to remove background gifs from game
@@ -131,11 +142,17 @@ const GameCanva = (userId) => {
       <Script src="./scripts/particles.js" async></Script>
       <Script src="./scripts/obstacle.js" async></Script>
       <div className={style.marq}>
-        <Marq></Marq>
+        <Marq userName={userName}></Marq>
       </div>
       <div>
         <h2 id="addressBar" className={style.address}>
-          Deploying as {userAddress?.slice(0, 6)}...{userAddress?.slice(39)}
+          Deploying as{" "}
+          <span id="userTitle">
+            {userName
+              ? userName
+              : `${userAddress?.slice(0, 6)}...${userAddress?.slice(39)}`}
+          </span>
+          <EditIcon className={style.Edit} onClick={handleEdit}></EditIcon>
         </h2>
         <h2 className={style.Quotes}>&quot;{currQuote}&quot;</h2>
         <h3 className={style.legend}>

@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import style from "../styles/InGame.module.css";
 
-const Marq = () => {
+const Marq = ({ userName }) => {
   const [score, setScore] = useState([]);
 
   const router = useRouter();
@@ -29,17 +29,32 @@ const Marq = () => {
         {score ? (
           <p>
             <span style={{ color: "#9e0000" }}>
-              {score[0]?.address?.slice(0, 9)}...{score[0]?.address?.slice(39)}
+              {score[0]?.name
+                ? score[0]?.name
+                : `${score[0]?.address?.slice(
+                    0,
+                    9
+                  )}...${score[0]?.address?.slice(39)}`}
             </span>
             &nbsp; made score of {score[0]?.score} pts.
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span style={{ color: "#9e0000" }}>
-              {score[1]?.address?.slice(0, 9)}...{score[1]?.address?.slice(39)}
+              {score[1]?.name
+                ? score[1]?.name
+                : `${score[1]?.address?.slice(
+                    0,
+                    9
+                  )}...${score[1]?.address?.slice(39)}`}
             </span>
             &nbsp; made score of {score[1]?.score} pts.
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span style={{ color: "#9e0000" }}>
-              {score[2]?.address?.slice(0, 9)}...{score[2]?.address?.slice(39)}
+              {score[2]?.name
+                ? score[2]?.name
+                : `${score[2]?.address?.slice(
+                    0,
+                    9
+                  )}...${score[2]?.address?.slice(39)}`}
             </span>
             &nbsp; made score of {score[2]?.score} pts.
           </p>

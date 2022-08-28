@@ -6,7 +6,9 @@ const UserTile = ({ data }) => {
       <div className={style.container}>
         <div className={style.Badge}></div>
         <div className={style.Address}>
-          {data.address?.slice(0, 6)}...{data.address?.slice(39)}
+          {data.name
+            ? data.name
+            : `${data.address?.slice(0, 6)}...${data.address?.slice(39)}`}
         </div>
         <span className={style.Score}>{data.score} pts.</span>
       </div>

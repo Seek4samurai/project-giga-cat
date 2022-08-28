@@ -18,6 +18,7 @@ let hue = 0;
 let frame = 0;
 let score = 0;
 let gamespeed = 5;
+let user = "Stranger";
 
 // Background-----------------------------
 const background = new Image();
@@ -105,9 +106,11 @@ function handleCollisions() {
         canvas.height / 2 - 10
       );
       const queryString = window.location.search.split("?");
+      const userTitle = document.getElementById("userTitle");
+      const user = userTitle.innerText;
       const userAddress = queryString[1];
 
-      // testing(score, userAddress);
+      testing(user, score, userAddress);
       return true;
     }
   }
@@ -132,9 +135,10 @@ canvas.addEventListener("click", (e) => {
   }
 });
 
-const testing = async (score, userAddress) => {
+const testing = async (user, score, userAddress) => {
   const res = await fetch("/api/score", {
     body: JSON.stringify({
+      name: user,
       address: userAddress,
       score: score,
     }),

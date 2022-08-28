@@ -27,6 +27,14 @@
     rgba(239, 252, 255, 1) 100%
   );
 }
+.Edit {
+  width: 30px;
+}
+.Edit:hover {
+  scale: 0.8;
+  transition: 0.2s all;
+  cursor: pointer;
+}
 
 .sliderContainer h2 {
   margin-top: 1rem;
