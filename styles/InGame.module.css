@@ -41,10 +41,7 @@
   margin-bottom: 0rem;
 }
 .sliderContainer {
-  width: 600px;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0%);
+  width: 500px;
 
   display: flex;
   flex-direction: column;
@@ -88,6 +85,13 @@
   font-size: 14px;
   font-style: italic;
   letter-spacing: 1.2px;
+}
+@media only screen and (max-width: 1366px) {
+  .peripheral {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
 .wrapper {

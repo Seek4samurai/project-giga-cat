@@ -143,27 +143,31 @@ const GameCanva = (userId) => {
       <Script src="./scripts/bird.js" async></Script>
       <Script src="./scripts/particles.js" async></Script>
       <Script src="./scripts/obstacle.js" async></Script>
-      <div className={style.marq}>
-        <Marq userName={userName}></Marq>
-      </div>
       <div>
-        <h2 id="addressBar" className={style.address}>
-          Deploying as{" "}
-          <span id="userTitle">
-            {userName
-              ? userName
-              : `${userAddress?.slice(0, 6)}...${userAddress?.slice(39)}`}
-          </span>
-          <EditIcon className={style.Edit} onClick={handleEdit}></EditIcon>
-        </h2>
-        <h2 className={style.Quotes}>&quot;{currQuote}&quot;</h2>
-        <h3 className={style.legend}>
+        <div className={style.peripheral}>
           <div>
-            &quot; Legends say it gets 10x fun after that beat drops &quot;{" "}
-            <br></br>
+            <h2 id="addressBar" className={style.address}>
+              Deploying as{" "}
+              <span id="userTitle">
+                {userName
+                  ? userName
+                  : `${userAddress?.slice(0, 6)}...${userAddress?.slice(39)}`}
+              </span>
+              <EditIcon className={style.Edit} onClick={handleEdit}></EditIcon>
+            </h2>
+            <h2 className={style.Quotes}>&quot;{currQuote}&quot;</h2>
+            <h3 className={style.legend}>
+              <div>
+                &quot; Legends say it gets 10x fun after that beat drops &quot;{" "}
+                <br></br>
+              </div>
+              <sub style={{ fontWeight: "normal" }}> - Legends themself</sub>
+            </h3>
           </div>
-          <sub style={{ fontWeight: "normal" }}> - Legends themself</sub>
-        </h3>
+          <div className={style.marq}>
+            <Marq userName={userName}></Marq>
+          </div>
+        </div>
         <div className={style.wrapper} id="menu">
           <div className={style.allthethings}>
             {/* <div className={style.left}></div> */}
