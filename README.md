@@ -40,6 +40,7 @@ class Score extends Entity {}
 const schema = new Schema(
   Score,
   {
+    name: { type: "string" },
     address: { type: "string" },
     score: { type: "number", sortable: true, textSearch: true },
   },
@@ -53,6 +54,7 @@ export const createScore = async (data) => {
   const repository = client?.fetchRepository(schema, client);
 
   const score = repository.createEntity();
+  score.name = data.name;
   score.score = data.score;
   score.address = data.address;
 
@@ -66,6 +68,7 @@ export const createScore = async (data) => {
 };
 ```
 Notice I've also declared something as `const ttlInSeconds = 21600;` and then used it in `  await repository.expire(id, ttlInSeconds);` because we don't want to store any data longer than 6 hours. Yes, your scores will reset after 6 hours.
+
 Once this is done, we can create an API route in our Next.js application.
 ```javascript
 import { createScore } from "../../lib/redis";
@@ -79,7 +82,7 @@ Once we create it in our database, it will be stored in our database by giving d
 
 ### How the data is accessed: 🤔
 
-Now if you've gone through the application, there is a section of leaderboard, where we have `scores` and `addresses` of players with highest pts.
+Now if you've gone through the application, there is a section of leaderboard, where we have `scores` and `addresses` or `usernames` of players with highest pts.
 To access our database and then fetch it from our Redis database, we have couple of ways like...
 
 In our development phase, I've used `Redis Insight`, importing my database using `public endpoint` & `password`.
@@ -139,7 +142,6 @@ import { searchScore } from "../../lib/redis";
 export default async function handler(req, res) {
   const data = req.query;
   const query = Object.keys(data)[0];
-  // console.log(query);
 
   const scores = await searchScore(query);
   res.status(200).json({ scores });
@@ -158,7 +160,9 @@ const fetchScores = async () => {
 ```
 Fetching score as an Object. Then in our separate `Marq.jsx` component we are using it as:
 ```javascript
-{score[0]?.address?.slice(0, 9)}...{score[0]?.address?.slice(39)}
+<span>
+    {score[0]?.name ? score[0]?.name : `${score[0]?.address?.slice(0,9)}...${score[0]?.address?.slice(39)}`}
+</span>
 ```
 
 Refer to [Using RediSearch](https://github.com/redis/redis-om-node#-using-redisearch).
@@ -196,6 +200,10 @@ and give them their values.
 If you've find any difficulty in this, Check my video! 🔥
 
 **If you notice anything unusual try refreshing the page. If it doesn't fixes the behavior, please create a issue in Github :)**
+
+## 💥New Update : Users can now have their temporary usernames💥
+Thanks to a Redis feature -> `TimeToLive` or `ttl`, users can assign themselves a temporary username for purpose of few hours till their scores exist.
+Check & read docs for more information.
 
 ## Deployment 🚀
 
