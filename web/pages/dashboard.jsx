@@ -1,37 +1,28 @@
+"use client";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { useMoralis } from "react-moralis";
+import { useAuth } from "../hooks/useAuth";
+import { useAuthStatus } from "../hooks/useAuthStatus";
 import { User } from "../public/assets/SVGs";
 import style from "../styles/Dashboard.module.css";
+import { useRouter } from "next/router";
 
 const Dashboard = () => {
-  const { isAuthenticated, user, logout } = useMoralis();
-  const [userAddress, setUserAddress] = useState();
+  useAuth();
   const router = useRouter();
+  const { isAuthenticated, loading } = useAuthStatus();
+  const [userAddress, setUserAddress] = useState(null);
 
   const handleLogout = async () => {
-    await logout();
-    console.log("logged out");
+    localStorage.removeItem("wallettoken");
+    localStorage.removeItem("userAddress");
+    router.replace("/");
   };
 
   useEffect(() => {
-    // removing body class as to remove background gifs from game
-    const bodyTag = document.querySelector("body");
-    bodyTag?.classList.remove("InGame_body__b_fQc");
-
-    // Authentication
-    if (!isAuthenticated) {
-      router.replace("/");
-    } else {
-      const showAccount = () => {
-        // Ethereum global object gives undefined error when page is refreshed
-        // setUserAddress(ethereum?.selectedAddress);
-        setUserAddress(user?.get("ethAddress"));
-      };
-      showAccount();
-    }
-  }, [isAuthenticated, router, user, userAddress]);
+    const address = localStorage.getItem("userAddress");
+    setUserAddress(address);
+  }, []);
 
   return (
     <div className={style.body}>

@@ -1,37 +1,61 @@
+"use client";
+
+import { ethers } from "ethers";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
-import { useMoralis } from "react-moralis";
+import { useAuth } from "../hooks/useAuth";
 import { Github, LinkedIn, SVG_1, SVG_2 } from "../public/assets/SVGs";
 import MetaMask from "../public/MetaMaskSVG.svg";
 import style from "../styles/Login.module.css";
 
 export default function Home() {
-  const { isAuthenticated, authenticate, user } = useMoralis();
+  useAuth();
   const router = useRouter();
 
   const handleLogin = async () => {
-    console.log("Login");
-    await authenticate({
-      signingMessage: "Authorize linking of your wallet",
-    })
-      .then(function (user) {
-        console.log(user?.get("ethAddress"));
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
-  useEffect(() => {
-    // removing body class as to remove background gifs from game
-    const bodyTag = document.querySelector("body");
-    bodyTag?.classList.remove("InGame_body__b_fQc");
-
-    if (isAuthenticated) {
-      router.replace("/dashboard");
+    if (!window.ethereum) {
+      alert("MetaMask not found!");
+      return;
     }
-  }, [isAuthenticated, router]);
+
+    try {
+      await window.ethereum.request({ method: "eth_requestAccounts" });
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const signer = await provider.getSigner();
+      const address = await signer.getAddress();
+
+      const res1 = await fetch("http://localhost:8000/nonce", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ address }),
+      });
+      const { nonce } = await res1.json();
+
+      const signature = await signer.signMessage(nonce);
+
+      const res2 = await fetch("http://localhost:8000/verify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ address, signature }),
+      });
+
+      const data = await res2.json();
+
+      if (data.token) {
+        localStorage.setItem("wallettoken", data.token);
+
+        localStorage.setItem("userAddress", address);
+
+        router.replace("/dashboard");
+        return { address, token: data.token };
+      } else {
+        return null;
+      }
+    } catch (err) {
+      console.error("MetaMask login error:", err);
+      return null;
+    }
+  };
 
   return (
     <div className={style.body}>
