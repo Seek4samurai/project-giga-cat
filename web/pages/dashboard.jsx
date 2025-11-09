@@ -8,7 +8,7 @@ import style from "../styles/Dashboard.module.css";
 import { useRouter } from "next/router";
 
 const Dashboard = () => {
-  useAuth();
+  useAuth("dashboard");
   const router = useRouter();
   const { isAuthenticated, loading } = useAuthStatus();
   const [userAddress, setUserAddress] = useState(null);

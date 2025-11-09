@@ -5,6 +5,7 @@
 */.next/*
 */env/*
 */__pycache__/*
+*/.env
 
 /.pnp
 .pnp.js

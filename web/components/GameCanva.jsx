@@ -1,16 +1,14 @@
 import Link from "next/link";
-import Script from "next/script";
 import { useRouter } from "next/router";
+import Script from "next/script";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useMoralis } from "react-moralis";
-import style from "../styles/InGame.module.css";
 import { quotes } from "../lib/quotes";
 import { EditIcon } from "../public/assets/SVGs";
+import style from "../styles/InGame.module.css";
 import Marq from "./Marq";
 
 const GameCanva = (userId) => {
-  const { logout } = useMoralis();
   const [userName, setUserName] = useState("");
   const [userAddress, setUserAddress] = useState();
   const [currQuote, setCurrQuote] = useState();
@@ -23,7 +21,8 @@ const GameCanva = (userId) => {
     const Input = prompt("Enter your username");
     if (Input?.length > 16) {
       alert("Username should not be longer than 16 words");
-    } else {
+      setUserName(localStorage.getItem("userAddress"));
+    } else if (Input !== null) {
       setUserName(Input);
     }
   };
@@ -38,8 +37,12 @@ const GameCanva = (userId) => {
     const bodyTag = document.querySelector("body");
     bodyTag?.classList.remove("InGame_body__b_fQc");
 
-    await logout();
+    // LOGOUT HERE
   };
+
+  useEffect(() => {
+    setUserName(localStorage.getItem("userAddress"));
+  }, []);
 
   useEffect(() => {
     // adding body class as to add background gifs for game

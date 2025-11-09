@@ -1,18 +1,14 @@
-import { useEffect } from "react";
+"use client";
 import { useRouter } from "next/router";
-import { useMoralis } from "react-moralis";
 import GameCanva from "../components/GameCanva";
+import { useAuth } from "../hooks/useAuth";
 
 const Game = () => {
-  const { isInitialized, isAuthenticated } = useMoralis();
   const router = useRouter();
   const data = router.query;
   const userId = Object.keys(data);
 
-  useEffect(() => {
-    const isAuth = () => (!isAuthenticated ? router.push("/") : null);
-    isInitialized && isAuth();
-  }, [isInitialized, isAuthenticated]);
+  useAuth("game");
 
   return (
     <div>

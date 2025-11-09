@@ -9,7 +9,7 @@ import MetaMask from "../public/MetaMaskSVG.svg";
 import style from "../styles/Login.module.css";
 
 export default function Home() {
-  useAuth();
+  useAuth("dashboard");
   const router = useRouter();
 
   const handleLogin = async () => {

@@ -1,10 +1,38 @@
-import { searchScore } from "../../lib/redis";
+import { Redis } from "@upstash/redis";
+
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN,
+});
 
 export default async function handler(req, res) {
-  const data = req.query;
-  const query = Object.keys(data)[0];
-  // console.log(query);
+  try {
+    if (req.method === "GET") {
+      const { user } = req.query; // e.g. /api/search?user=Gourav
 
-  const scores = await searchScore(query);
-  res.status(200).json({ scores });
+      if (user) {
+        const score = await redis.zscore("scores", user);
+        const rank = await redis.zrevrank("scores", user);
+        return res.status(200).json({
+          user,
+          score: score ? Number(score) : null,
+          rank: rank !== null ? rank + 1 : null,
+        });
+      }
+
+      // Otherwise return the top 10 leaderboard
+      const topScores = await redis.zrange("scores", 0, 9, {
+        withScores: true,
+        rev: true,
+      });
+
+      return res.status(200).json({ scores: topScores });
+    }
+
+    res.setHeader("Allow", ["GET", "POST"]);
+    res.status(405).end(`Method ${req.method} Not Allowed`);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 }

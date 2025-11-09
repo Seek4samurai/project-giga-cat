@@ -37,8 +37,9 @@
 }
 
 .sliderContainer h2 {
-  margin-top: 1rem;
-  margin-bottom: 0rem;
+  margin: 10px;
+  /* margin-top: 1rem; */
+  /* margin-bottom: 0rem; */
 }
 .sliderContainer {
   width: 500px;

@@ -1,17 +1,15 @@
+"use client";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { useMoralis } from "react-moralis";
 import UserTile from "../components/UserTile";
 import style from "../styles/Leaderboard.module.css";
 
 const Leaderboard = () => {
   const [score, setScore] = useState([]);
-  const { isInitialized, isAuthenticated } = useMoralis();
   const router = useRouter();
 
   const data = router.query;
   const query = Object.keys(data)[0];
-
   const handleBack = () => {
     window.location.assign(`/game?${query}`);
   };
@@ -28,11 +26,6 @@ const Leaderboard = () => {
       setScore(data);
     });
   }, []);
-
-  useEffect(() => {
-    const isAuth = () => (!isAuthenticated ? router.push("/") : null);
-    isInitialized && isAuth();
-  }, [isInitialized, isAuthenticated]);
 
   return (
     <div className={style.body}>

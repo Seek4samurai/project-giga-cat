@@ -17,7 +17,7 @@ let angle = 0;
 let hue = 0;
 let frame = 0;
 let score = 0;
-let gamespeed = 5;
+let gamespeed = 2;
 let user = "Stranger";
 
 // Background-----------------------------

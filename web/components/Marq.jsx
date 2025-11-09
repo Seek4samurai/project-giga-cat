@@ -1,23 +1,21 @@
-import { useRouter } from "next/router";
+"use client";
 import { useEffect, useState } from "react";
 import style from "../styles/InGame.module.css";
 
 const Marq = ({ userName }) => {
   const [score, setScore] = useState([]);
 
-  const router = useRouter();
-  const data = router.query;
-  const query = Object.keys(data)[0];
-
-  const fetchScores = async () => {
+  const fetchScores = async (query) => {
     const res = await fetch("/api/search?" + query);
     const results = await res.json();
     return results["scores"];
   };
 
   useEffect(() => {
+    const query = localStorage.getItem("userAddress");
+
     // getting score from redis
-    fetchScores().then((data) => {
+    fetchScores(query).then((data) => {
       setScore(data);
     });
   }, []);
@@ -26,7 +24,7 @@ const Marq = ({ userName }) => {
     <div className={style.sliderContainer}>
       <h2>Top Players</h2>
       <div className={style.slider}>
-        {score ? (
+        {score.length > 0 ? (
           <p>
             <li>
               <span style={{ color: "#ff4000" }}>
@@ -63,7 +61,7 @@ const Marq = ({ userName }) => {
             </li>
           </p>
         ) : (
-          <div>Loading...</div>
+          <div></div>
         )}
       </div>
     </div>
