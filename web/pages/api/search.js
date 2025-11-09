@@ -8,20 +8,8 @@ const redis = new Redis({
 export default async function handler(req, res) {
   try {
     if (req.method === "GET") {
-      const { user } = req.query; // e.g. /api/search?user=Gourav
-
-      if (user) {
-        const score = await redis.zscore("scores", user);
-        const rank = await redis.zrevrank("scores", user);
-        return res.status(200).json({
-          user,
-          score: score ? Number(score) : null,
-          rank: rank !== null ? rank + 1 : null,
-        });
-      }
-
-      // Otherwise return the top 10 leaderboard
-      const topScores = await redis.zrange("scores", 0, 9, {
+      // Return top 3 leaderboard only
+      const topScores = await redis.zrange("scores", 0, 2, {
         withScores: true,
         rev: true,
       });

@@ -6,7 +6,7 @@ const Marq = ({ userName }) => {
   const [score, setScore] = useState([]);
 
   const fetchScores = async (query) => {
-    const res = await fetch("/api/search?" + query);
+    const res = await fetch("/api/search");
     const results = await res.json();
     return results["scores"];
   };

@@ -14,7 +14,7 @@ export default async function handler(req, res) {
       }
 
       const memberKey = address || name;
-      // await redis.zadd("scores", { score, member: memberKey });
+      await redis.zadd("scores", { score, member: memberKey });
 
       return res.status(201).json({ message: "Score saved" });
     }

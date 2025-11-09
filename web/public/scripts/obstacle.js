@@ -3,8 +3,8 @@ const obstaclesArray = [];
 class Obstacle {
   constructor() {
     // To change Vertical Gap between Obstacles
-    this.top = (Math.random() * canvas.height) / 3 + 30;
-    this.bottom = (Math.random() * canvas.height) / 3 + 30;
+    this.top = (Math.random() * canvas.height) / 3 + 0;
+    this.bottom = (Math.random() * canvas.height) / 3 + 0;
     // ------------------------------------------------
     this.x = canvas.width;
     // To change Width of Obstacles
@@ -30,7 +30,7 @@ class Obstacle {
 
 function handleObstacles() {
   // To change Gap between two consecutive Obstacles
-  if (frame % 40 === 0) {
+  if (frame % 80 === 0) {
     obstaclesArray.unshift(new Obstacle());
   }
   for (let i = 0; i < obstaclesArray.length; i++) {

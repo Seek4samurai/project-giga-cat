@@ -4,9 +4,7 @@ import Script from "next/script";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { quotes } from "../lib/quotes";
-import { EditIcon } from "../public/assets/SVGs";
 import style from "../styles/InGame.module.css";
-import Marq from "./Marq";
 
 const GameCanva = (userId) => {
   const [userName, setUserName] = useState("");
@@ -38,6 +36,9 @@ const GameCanva = (userId) => {
     bodyTag?.classList.remove("InGame_body__b_fQc");
 
     // LOGOUT HERE
+    localStorage.removeItem("wallettoken");
+    localStorage.removeItem("userAddress");
+    router.replace("/");
   };
 
   useEffect(() => {
@@ -156,7 +157,7 @@ const GameCanva = (userId) => {
                   ? userName
                   : `${userAddress?.slice(0, 6)}...${userAddress?.slice(39)}`}
               </span>
-              <EditIcon className={style.Edit} onClick={handleEdit}></EditIcon>
+              {/* <EditIcon className={style.Edit} onClick={handleEdit}></EditIcon> */}
             </h2>
             <h2 className={style.Quotes}>&quot;{currQuote}&quot;</h2>
             <h3 className={style.legend}>
@@ -167,9 +168,9 @@ const GameCanva = (userId) => {
               <sub style={{ fontWeight: "normal" }}> - Legends themself</sub>
             </h3>
           </div>
-          <div className={style.marq}>
+          {/* <div className={style.marq}>
             <Marq userName={userName}></Marq>
-          </div>
+          </div> */}
         </div>
         <div className={style.wrapper} id="menu">
           <div className={style.allthethings}>

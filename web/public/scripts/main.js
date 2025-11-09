@@ -136,7 +136,7 @@ canvas.addEventListener("click", (e) => {
 });
 
 const testing = async (user, score, userAddress) => {
-  const res = await fetch("/api/score", {
+  await fetch("/api/score", {
     body: JSON.stringify({
       name: user,
       address: userAddress,
@@ -147,6 +147,4 @@ const testing = async (user, score, userAddress) => {
     },
     method: "POST",
   });
-
-  const result = await res.json();
 };

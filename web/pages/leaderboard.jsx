@@ -15,7 +15,7 @@ const Leaderboard = () => {
   };
 
   const fetchScores = async () => {
-    const res = await fetch("/api/search?" + query);
+    const res = await fetch("/api/search");
     const results = await res.json();
     return results["scores"];
   };
@@ -35,9 +35,10 @@ const Leaderboard = () => {
           <h1 className={style.Top}>Top 3 Players 👑</h1>
         </div>
         {score ? (
-          score.map((data) => (
-            <UserTile key={data.entityId} data={data}></UserTile>
-          ))
+          <>
+            {/* score.map((data, idx) => <UserTile key={idx} score={score}></UserTile>) */}
+            <UserTile score={score}></UserTile>
+          </>
         ) : (
           <div>Loading</div>
         )}

@@ -9,7 +9,7 @@ class Bird {
     this.originalHeight = 503;
     this.width = this.originalWidth / 20;
     this.height = this.originalHeight / 20;
-    this.weight = 1;
+    this.weight = 0.5;
   }
   update() {
     let curve = Math.sin(angle) * 20;
@@ -43,7 +43,7 @@ class Bird {
     );
   }
   flap() {
-    this.vy -= 2;
+    this.vy -= 1;
   }
 }
 const bird = new Bird();
